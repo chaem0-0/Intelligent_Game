@@ -54,7 +54,7 @@ class Agent:
 class Brain:
     '''에이전트의 두뇌 역할을 하는 클래스, Q러닝을 실제 수행'''
     def __init__(self, num_states, num_actions):
-        self.num_actions = num_actions  # 행동의 가짓수(왼쪽, 오른쪽)를 구함
+        self.num_actions = num_actions # 행동의 가짓수(왼쪽, 오른쪽)를 구함
         # Q테이블을 생성. 줄 수는 상태를 구간수^4(4는 변수의 수)가지 값 중 
         # 하나로 변환한 값, 열 수는 행동의 가짓수, 
         # 2차원 배열(size 크기)을 random(0~1) 값으로 초기화
@@ -92,7 +92,7 @@ class Brain:
         if epsilon <= np.random.uniform(0, 1):
             action = np.argmax(self.q_table[state][:])
         else:
-            action = np.random.choice(self.num_actions)  
+            action = np.random.choice(self.num_actions)
             # 0,1 두 가지 행동 중 하나를 무작위로 선택
         return action
 
