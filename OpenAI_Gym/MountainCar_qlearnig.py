@@ -35,7 +35,7 @@ class Environment:
 
         for episode in range(NUM_EPISODES): 		# 에피소드 수 만큼 반복
             observation, info = self.env.reset(seed=82) 		# 환경 초기화
-            print("observation : ", observation); 
+            #print("observation : ", observation); 
 
             for step in range(MAX_STEPS): # 1 에피소드에 해당하는 반복
                 # 행동을 선택
@@ -44,12 +44,14 @@ class Environment:
             
                 # 행동 a_t를 실행하여 s_{t+1}, r_{t+1}을 계산
                 observation_next, _, done, _, _ = self.env.step(action)
+                print("observation : ", observation_next); 
+                
                 # reward, info는 사용하지 않으므로 _로 처리함
         
                 # 보상 부여
                 if done:
                     if observation_next[0] >= 0.5:
-                        reward = 1  # 목표 지점에 도달하면 보상 1 부여
+                        reward = 10  # 목표 지점에 도달하면 보상 1 부여 했다가 너무 done 되는 episode가 없어서 10으로 늘림
                         complete_episodes += 1  # 에피소드 연속 성공 기록을 업데이트
                     else:
                         reward = -1  # 목표 지점에 도달하지 못하면 페널티로 보상 -1 부여
@@ -73,7 +75,7 @@ class Environment:
             if complete_episodes >= 10: 	# 10 에피소드 연속으로 성공한 경우
                 print('10 에피소드 연속 성공')
                 is_episode_final = True 		# 다음 에피소드가 마지막 에피소드가 됨
-                #break 쓸지 말지 추후 결정
+                break  #쓸지 말지 추후 결정
 
 
 class Agent:
